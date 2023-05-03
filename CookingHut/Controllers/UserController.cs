@@ -47,7 +47,7 @@ namespace CookingHut.Controllers
                 return Unauthorized();
             }
 
-            return Ok();
+            return Ok(user);
         }
 
         [HttpPost]
