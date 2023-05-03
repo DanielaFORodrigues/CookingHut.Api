@@ -15,7 +15,7 @@ namespace CookingHut.Services.Mapping.Dtos
         public string City { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
-        public DateTime BirhDate { get; set; }
+        public DateTime BirthDate { get; set; }
         public bool IsAdministrator { get; set; }
         public bool IsBlocked { get; set; }
     }

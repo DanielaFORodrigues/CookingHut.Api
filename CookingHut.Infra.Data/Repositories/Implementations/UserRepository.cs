@@ -35,6 +35,11 @@ namespace CookingHut.Infra.Data.Repositories.Implementations
             return _dbSet.FirstOrDefault(user => user.Email == email && user.Password == password);
         }
 
+        public bool Exists(string email)
+        {
+            return _dbSet.Any(user => user.Email == email);
+        }
+
         public User Add(User user)
         {
             _dbSet.Add(user);

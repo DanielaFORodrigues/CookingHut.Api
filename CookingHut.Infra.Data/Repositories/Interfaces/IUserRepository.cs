@@ -15,6 +15,8 @@ namespace CookingHut.Infra.Data.Repositories.Interfaces
 
         User GetLogin(string email, string password);
 
+        bool Exists(string email);
+
         User Add(User User);
 
         User Update(User user);

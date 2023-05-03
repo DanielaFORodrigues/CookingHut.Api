@@ -3,6 +3,7 @@ using CookingHut.Services.Mapping.Dtos;
 using CookingHut.Services.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace CookingHut.Controllers
 {
@@ -18,35 +19,60 @@ namespace CookingHut.Controllers
         }
 
         [HttpGet]
-        public List<UserDto> GetAll()
+        public async Task<List<UserDto>> GetAllAsync()
         {
-            return _service.GetAll().Result;
+            return await _service.GetAll();
         }
 
         [HttpGet("{id}")]
-        public UserDto GetById(int id)
+        public async Task<IActionResult> GetByIdAsync(int id)
         {
-            return _service.GetById(id).Result;
+            var user = await _service.GetById(id);
+
+            if (user is null)
+            {
+                return NotFound();
+            }
+
+            return Ok(user);
         }
 
         [HttpPost("login")]
-        public User GetLogin(UserLogin user)
+        public IActionResult GetLogin(UserLogin user)
         {
-            return _service.GetLogin(user.Email, user.Password);
+            var loggedUser = _service.GetLogin(user.Email, user.Password);
+
+            if (loggedUser is null)
+            {
+                return Unauthorized();
+            }
+
+            return Ok();
         }
 
         [HttpPost]
-        public UserDto Save(UserDto userDto)
+        public async Task<IActionResult> RegisterUserAsync(UserDto userDto)
         {
-            return _service.Save(userDto).Result;
+            var user = await _service.Create(userDto);
+
+            if (user is null)
+            {
+                return Conflict();
+            }
+
+            return Ok(user);
+        }
+
+        [HttpPut]
+        public async Task<UserDto> UpdateAsync(UserDto userDto)
+        {
+            return await _service.Update(userDto);
         }
 
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async Task DeleteAsync(int id)
         {
-            UserDto user = _service.GetById(id).Result;
-            if (user != null)
-                _service.Delete(user);
+            await _service.Delete(id);
         }
     }
 }

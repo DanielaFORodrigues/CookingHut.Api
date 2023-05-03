@@ -41,27 +41,43 @@ namespace CookingHut.Services.Services.Implementations
             return _repository.GetLogin(email, password);
         }
 
-        public async Task<UserDto> Save(UserDto userDto)
+        public async Task<UserDto> Create(UserDto userDto)
         {
+            bool userAlreadyExists = _repository.Exists(userDto.Email);
+
+            if (userAlreadyExists)
+            {
+                return null;
+            }
+
             User user = _mapper.Map<User>(userDto);
 
-            if (userDto.Id > 0)
-            {
-                _repository.Update(user);
-            }
-            else
-            {
-                _repository.Add(user);
-            }
+            _repository.Add(user);
 
             await _context.SaveChangesAsync();
 
             return _mapper.Map<UserDto>(user);
         }
 
-        public async Task Delete(UserDto userDto)
+        public async Task<UserDto> Update(UserDto userDto)
         {
             User user = _mapper.Map<User>(userDto);
+
+            if (userDto.Id == 0)
+            {
+                return null;
+            }
+
+            _repository.Update(user);
+
+            await _context.SaveChangesAsync();
+
+            return _mapper.Map<UserDto>(user);
+        }
+
+        public async Task Delete(int id)
+        {
+            User user = await _repository.GetById(id);
 
             _repository.Delete(user);
 

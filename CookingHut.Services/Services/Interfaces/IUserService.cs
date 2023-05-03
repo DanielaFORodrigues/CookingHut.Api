@@ -16,8 +16,10 @@ namespace CookingHut.Services.Services.Interfaces
 
         User GetLogin(string email, string password);
 
-        Task<UserDto> Save(UserDto userDto);
+        Task<UserDto> Create(UserDto userDto);
 
-        Task Delete(UserDto userDto);
+        Task<UserDto> Update(UserDto userDto);
+
+        Task Delete(int id);
     }
 }
