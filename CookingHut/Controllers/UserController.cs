@@ -40,6 +40,11 @@ namespace CookingHut.Controllers
         [HttpPost("login")]
         public IActionResult GetLogin(UserLogin user)
         {
+            if (string.IsNullOrWhiteSpace(user.Email) || string.IsNullOrWhiteSpace(user.Password))
+            {
+                return BadRequest();
+            }
+
             var loggedUser = _service.GetLogin(user.Email, user.Password);
 
             if (loggedUser is null)
