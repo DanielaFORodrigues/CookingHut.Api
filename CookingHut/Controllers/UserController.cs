@@ -58,6 +58,16 @@ namespace CookingHut.Controllers
         [HttpPost]
         public async Task<IActionResult> RegisterUserAsync(UserDto userDto)
         {
+            if (string.IsNullOrWhiteSpace(userDto.Name)
+                || string.IsNullOrWhiteSpace(userDto.Surname)
+                || string.IsNullOrWhiteSpace(userDto.Country)
+                || string.IsNullOrWhiteSpace(userDto.City)
+                || string.IsNullOrWhiteSpace(userDto.Email)
+                || string.IsNullOrWhiteSpace(userDto.Password))
+            {
+                return BadRequest();
+            }
+
             var user = await _service.Create(userDto);
 
             if (user is null)

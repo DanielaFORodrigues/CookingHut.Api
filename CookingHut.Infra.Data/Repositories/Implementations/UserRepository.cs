@@ -32,7 +32,7 @@ namespace CookingHut.Infra.Data.Repositories.Implementations
 
         public User GetLogin(string email, string password)
         {
-            return _dbSet.FirstOrDefault(user => user.Email == email && user.Password == password);
+            return _dbSet.FirstOrDefault(user => user.Email == email && user.Password == password && !user.IsBlocked);
         }
 
         public bool Exists(string email)
