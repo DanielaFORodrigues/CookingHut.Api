@@ -52,6 +52,8 @@ namespace CookingHut.Controllers
                 return Unauthorized();
             }
 
+            user.Id = loggedUser.Id;
+
             return Ok(user);
         }
 
