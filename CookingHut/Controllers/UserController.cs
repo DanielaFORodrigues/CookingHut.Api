@@ -38,23 +38,21 @@ namespace CookingHut.Controllers
         }
 
         [HttpPost("login")]
-        public IActionResult GetLogin(UserLogin user)
+        public IActionResult GetLogin(UserLogin userLogin)
         {
-            if (string.IsNullOrWhiteSpace(user.Email) || string.IsNullOrWhiteSpace(user.Password))
+            if (string.IsNullOrWhiteSpace(userLogin.Email) || string.IsNullOrWhiteSpace(userLogin.Password))
             {
                 return BadRequest();
             }
 
-            var loggedUser = _service.GetLogin(user.Email, user.Password);
+            var loggedUser = _service.GetLogin(userLogin);
 
             if (loggedUser is null)
             {
                 return Unauthorized();
             }
 
-            user.Id = loggedUser.Id;
-
-            return Ok(user);
+            return Ok(loggedUser);
         }
 
         [HttpPost]

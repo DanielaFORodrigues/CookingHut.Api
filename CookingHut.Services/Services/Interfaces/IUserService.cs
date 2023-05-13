@@ -14,7 +14,7 @@ namespace CookingHut.Services.Services.Interfaces
 
         Task<UserDto> GetById(int id);
 
-        User GetLogin(string email, string password);
+        UserLogin GetLogin(UserLogin userLogin);
 
         Task<UserDto> Create(UserDto userDto);
 

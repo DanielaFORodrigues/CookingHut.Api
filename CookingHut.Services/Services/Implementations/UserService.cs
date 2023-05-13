@@ -36,9 +36,19 @@ namespace CookingHut.Services.Services.Implementations
             return _mapper.Map<UserDto>(user);
         }
 
-        public User GetLogin(string email, string password)
+        public UserLogin GetLogin(UserLogin userLogin)
         {
-            return _repository.GetLogin(email, password);
+            User user = _repository.GetLogin(userLogin.Email, userLogin.Password);
+
+            if (user is null)
+            {
+                return null;
+            }
+
+            userLogin.Id = user.Id;
+            userLogin.Name = this.GetNomeParaMostrar(user);
+
+            return userLogin;
         }
 
         public async Task<UserDto> Create(UserDto userDto)
@@ -82,6 +92,14 @@ namespace CookingHut.Services.Services.Implementations
             _repository.Delete(user);
 
             await _context.SaveChangesAsync();
+        }
+
+        private string GetNomeParaMostrar(User user)
+        {
+            int maxLength = 20;
+            string nomeOriginal = user.Name;
+
+            return nomeOriginal.Length < maxLength ? nomeOriginal : nomeOriginal.Substring(0, maxLength);
         }
     }
 }
