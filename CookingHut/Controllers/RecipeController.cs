@@ -2,6 +2,7 @@
 using CookingHut.Services.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace CookingHut.Controllers
 {
@@ -29,9 +30,12 @@ namespace CookingHut.Controllers
         }
 
         [HttpPost]
-        public RecipeDto Save(RecipeDto recipeDto)
+        public async Task<IActionResult> Save(RecipeDto recipeDto)
         {
-            return _service.Save(recipeDto).Result;
+            recipeDto.CreationDate = System.DateTime.UtcNow;
+            var recipe = await _service.Save(recipeDto);
+
+            return Ok(recipe);
         }
 
         [HttpDelete("{id}")]
