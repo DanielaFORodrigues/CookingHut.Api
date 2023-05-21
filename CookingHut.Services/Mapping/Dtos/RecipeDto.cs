@@ -1,6 +1,7 @@
 ﻿using CookingHut.Domain.Entities;
 using CookingHut.Domain.Enums;
 using System;
+using System.Collections.Generic;
 
 namespace CookingHut.Services.Mapping.Dtos
 {
@@ -16,5 +17,6 @@ namespace CookingHut.Services.Mapping.Dtos
         public int UserId { get; set; }
         public User User { get; set; }
         public DateTime CreationDate { get; set; }
+        public List<RecipeIngredientDto> RecipeIngredients { get; set; }
     }
 }

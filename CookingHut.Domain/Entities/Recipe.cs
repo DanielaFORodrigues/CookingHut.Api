@@ -16,5 +16,6 @@ namespace CookingHut.Domain.Entities
         public int UserId { get; set; }
         public User User { get; set; }
         public DateTime CreationDate { get; set; }
+        public List<RecipeIngredient> RecipeIngredients { get; set; }
     }
 }
