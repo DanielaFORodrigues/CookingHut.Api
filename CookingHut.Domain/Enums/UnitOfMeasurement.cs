@@ -8,5 +8,9 @@
         Centiliters = 3,
         Deciliters = 4,
         Liters = 5,
+        TeaCup = 6,
+        CoffeeCup = 7,
+        TeaSpoon = 8,
+        Tablespoon = 9,
     }
 }
