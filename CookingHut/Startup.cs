@@ -5,11 +5,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using CookingHut.Infra.CrossCutting.DependencyContainer;
-using System.Net.Http;
-using System.Net;
 using System.Linq;
 using System.IO;
-using static System.Net.WebRequestMethods;
 using System;
 
 namespace CookingHut
