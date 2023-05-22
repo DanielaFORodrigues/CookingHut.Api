@@ -14,6 +14,6 @@
         Tablespoon = 9,
         Unit = 10,
         Can = 11,
-        Packaging = 12,
+        Package = 12,
     }
 }
