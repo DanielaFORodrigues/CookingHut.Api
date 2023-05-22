@@ -5,6 +5,12 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using CookingHut.Infra.CrossCutting.DependencyContainer;
+using System.Net.Http;
+using System.Net;
+using System.Linq;
+using System.IO;
+using static System.Net.WebRequestMethods;
+using System;
 
 namespace CookingHut
 {
@@ -55,12 +61,32 @@ namespace CookingHut
                 endpoints.MapControllers();
             });
 
+            app.Map("/uploadImage", MapImageUploadMiddleware);
+
             app.UseSwagger()
                 .UseSwaggerUI(options =>
                 {
                     options.SwaggerEndpoint("swagger/CookingHut/swagger.json", "Cooking Hut");
                     options.RoutePrefix = "";
                 });
+        }
+
+        private void MapImageUploadMiddleware(IApplicationBuilder app)
+        {
+            app.Use(async (context, next) =>
+            {
+                var uploadedFile = context.Request.Form.Files.First();
+                var fileExtension = uploadedFile.FileName.Split('.').Last();
+                var filename = $"{DateTime.Now.Ticks.ToString()}.{fileExtension}";
+                var physicalPath = Path.Combine(Directory.GetCurrentDirectory(), "RecipeImages", filename);
+
+                using (Stream fileStream = new FileStream(physicalPath, FileMode.Create))
+                {
+                    await uploadedFile.CopyToAsync(fileStream);
+                }
+
+                await context.Response.WriteAsJsonAsync(filename);
+            });
         }
     }
 }
