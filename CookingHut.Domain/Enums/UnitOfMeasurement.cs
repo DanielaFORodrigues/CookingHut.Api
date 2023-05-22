@@ -12,5 +12,8 @@
         CoffeeSpoon = 7,
         TeaSpoon = 8,
         Tablespoon = 9,
+        Unit = 10,
+        Can = 11,
+        Packaging = 12,
     }
 }
