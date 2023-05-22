@@ -9,7 +9,7 @@
         Deciliters = 4,
         Liters = 5,
         TeaCup = 6,
-        CoffeeCup = 7,
+        CoffeeSpoon = 7,
         TeaSpoon = 8,
         Tablespoon = 9,
     }
