@@ -3,6 +3,7 @@ using CookingHut.Infra.Data.Context;
 using CookingHut.Infra.Data.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace CookingHut.Infra.Data.Repositories.Implementations
@@ -20,12 +21,16 @@ namespace CookingHut.Infra.Data.Repositories.Implementations
 
         public async Task<List<RecipeIngredient>> GetAll()
         {
-            return await _dbSet.ToListAsync();
+            return _dbSet
+                .Include(recipe => recipe.Ingredient)
+                .ToList();
         }
 
-        public async Task<RecipeIngredient> GetById(int id)
+        public async Task<RecipeIngredient> GetByRecipeId(int recipeId)
         {
-            return await _dbSet.FindAsync(id);
+            return _dbSet
+                .Include(recipeIngredient => recipeIngredient.Ingredient)
+                .FirstOrDefault(recipeIngredient => recipeIngredient.RecipeId == recipeId);
         }
 
         public RecipeIngredient Add(RecipeIngredient recipeIngredient)

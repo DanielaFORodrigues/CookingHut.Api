@@ -22,10 +22,10 @@ namespace CookingHut.Controllers
             return _service.GetAll().Result;
         }
 
-        [HttpGet("{id}")]
-        public RecipeIngredientDto GetById(int id)
+        [HttpGet("{recipeId}")]
+        public RecipeIngredientDto GetById(int recipeId)
         {
-            return _service.GetById(id).Result;
+            return _service.GetByRecipeId(recipeId).Result;
         }
 
         [HttpPost]
@@ -37,7 +37,7 @@ namespace CookingHut.Controllers
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
-            RecipeIngredientDto recipeIngredient = _service.GetById(id).Result;
+            RecipeIngredientDto recipeIngredient = _service.GetByRecipeId(id).Result;
             if (recipeIngredient != null)
                 _service.Delete(recipeIngredient);
         }
