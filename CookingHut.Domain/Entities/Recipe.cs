@@ -12,6 +12,7 @@ namespace CookingHut.Domain.Entities
         public int CategoryId { get; set; }
         public Category Category { get; set; }
         public string ExecutionTime { get; set; }
+        public string Image { get; set; }
         public DifficultyLevel Difficulty { get; set; }
         public int UserId { get; set; }
         public User User { get; set; }
