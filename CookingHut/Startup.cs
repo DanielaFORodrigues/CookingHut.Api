@@ -8,6 +8,7 @@ using CookingHut.Infra.CrossCutting.DependencyContainer;
 using System.Linq;
 using System.IO;
 using System;
+using Microsoft.Extensions.FileProviders;
 
 namespace CookingHut
 {
@@ -59,6 +60,12 @@ namespace CookingHut
             });
 
             app.Map("/uploadImage", MapImageUploadMiddleware);
+
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "RecipeImages")),
+                RequestPath = "/RecipeImages"
+            });
 
             app.UseSwagger()
                 .UseSwaggerUI(options =>
