@@ -24,9 +24,16 @@ namespace CookingHut.Controllers
         }
 
         [HttpGet("{id}")]
-        public RecipeDto GetById(int id)
+        public async Task<IActionResult> GetById(int id)
         {
-            return _service.GetById(id).Result;
+            var recipe = await _service.GetById(id);
+
+            if (recipe is null)
+            {
+                return NotFound();
+            }
+
+            return Ok(recipe);
         }
 
         [HttpPost]
