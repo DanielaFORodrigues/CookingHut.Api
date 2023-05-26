@@ -8,7 +8,9 @@ namespace CookingHut.Infra.Data.Repositories.Interfaces
     {
         Task<List<RecipeIngredient>> GetAll();
 
-        Task<RecipeIngredient> GetByRecipeId(int recipeId);
+        Task<List<RecipeIngredient>> GetByRecipeId(int recipeId);
+
+        Task<RecipeIngredient> GetById(int id);
 
         RecipeIngredient Add(RecipeIngredient recipeIngredient);
 

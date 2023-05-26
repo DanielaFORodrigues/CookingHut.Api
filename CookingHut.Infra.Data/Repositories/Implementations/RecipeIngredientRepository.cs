@@ -26,11 +26,19 @@ namespace CookingHut.Infra.Data.Repositories.Implementations
                 .ToList();
         }
 
-        public async Task<RecipeIngredient> GetByRecipeId(int recipeId)
+        public async Task<List<RecipeIngredient>> GetByRecipeId(int recipeId)
         {
             return _dbSet
                 .Include(recipeIngredient => recipeIngredient.Ingredient)
-                .FirstOrDefault(recipeIngredient => recipeIngredient.RecipeId == recipeId);
+                .Where(recipeIngredient => recipeIngredient.RecipeId == recipeId)
+                .ToList();
+        }
+
+        public async Task<RecipeIngredient> GetById(int id)
+        {
+            return _dbSet
+                .Include(recipeIngredient => recipeIngredient.Ingredient)
+                .FirstOrDefault(recipeIngredient => recipeIngredient.Id == id);
         }
 
         public RecipeIngredient Add(RecipeIngredient recipeIngredient)

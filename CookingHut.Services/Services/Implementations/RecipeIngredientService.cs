@@ -29,9 +29,15 @@ namespace CookingHut.Services.Services.Implementations
             return _mapper.Map<List<RecipeIngredientDto>>(recipeIngredients);
         }
 
-        public async Task<RecipeIngredientDto> GetByRecipeId(int recipeId)
+        public async Task<List<RecipeIngredientDto>> GetByRecipeId(int recipeId)
         {
-            RecipeIngredient recipeIngredient = await _repository.GetByRecipeId(recipeId);
+            List<RecipeIngredient> recipeIngredients = await _repository.GetByRecipeId(recipeId);
+            return _mapper.Map<List<RecipeIngredientDto>>(recipeIngredients);
+        }
+
+        public async Task<RecipeIngredientDto> GetById(int id)
+        {
+            RecipeIngredient recipeIngredient = await _repository.GetById(id);
             return _mapper.Map<RecipeIngredientDto>(recipeIngredient);
         }
 

@@ -11,7 +11,9 @@ namespace CookingHut.Services.Services.Interfaces
     {
         Task<List<RecipeIngredientDto>> GetAll();
 
-        Task<RecipeIngredientDto> GetByRecipeId(int recipeId);
+        Task<List<RecipeIngredientDto>> GetByRecipeId(int recipeId);
+
+        Task<RecipeIngredientDto> GetById(int id);
 
         Task<RecipeIngredientDto> Save(RecipeIngredientDto recipeIngredientDto);
 
