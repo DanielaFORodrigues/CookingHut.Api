@@ -9,7 +9,7 @@ namespace CookingHut.Services.Services.Interfaces
 {
     public interface IRecipeService
     {
-        Task<List<RecipeDto>> GetAll();
+        Task<List<RecipeDto>> GetAll(string type, int id);
 
         Task<RecipeDto> GetById(int id);
 

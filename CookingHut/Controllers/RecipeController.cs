@@ -18,9 +18,9 @@ namespace CookingHut.Controllers
         }
 
         [HttpGet]
-        public List<RecipeDto> GetAll()
+        public List<RecipeDto> GetAll(string type, int id)
         {
-            return _service.GetAll().Result;
+            return _service.GetAll(type, id).Result;
         }
 
         [HttpGet("{id}")]

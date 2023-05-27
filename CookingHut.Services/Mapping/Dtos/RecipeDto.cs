@@ -19,5 +19,6 @@ namespace CookingHut.Services.Mapping.Dtos
         public User User { get; set; }
         public DateTime CreationDate { get; set; }
         public List<RecipeIngredientDto> RecipeIngredients { get; set; }
+        public bool IsApproved { get; set; }
     }
 }

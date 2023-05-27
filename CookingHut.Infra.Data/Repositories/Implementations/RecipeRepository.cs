@@ -19,12 +19,39 @@ namespace CookingHut.Infra.Data.Repositories.Implementations
             _dbSet = _cookingHutDBContext.Set<Recipe>();
         }
 
-        public async Task<List<Recipe>> GetAll()
+        public async Task<List<Recipe>> GetAll(string type, int id)
         {
-            return _dbSet
-                .Include(recipe => recipe.Category)
-                .Include(recipe => recipe.User)
-                .ToList();
+            switch (type)
+            {
+                //falta filtro por "favourites"
+
+                case "approval":
+                    return _dbSet
+                        .Include(recipe => recipe.Category)
+                        .Include(recipe => recipe.User)
+                        .Where(recipe => recipe.IsApproved == false)
+                        .ToList();
+
+                case "owner":
+                    return _dbSet
+                        .Include(recipe => recipe.Category)
+                        .Include(recipe => recipe.User)
+                        .Where(recipe => recipe.UserId == id)
+                        .ToList();
+
+                case "category":
+                    return _dbSet
+                        .Include(recipe => recipe.Category)
+                        .Include(recipe => recipe.User)
+                        .Where(recipe => recipe.CategoryId == id && recipe.IsApproved)
+                        .ToList();
+
+                default:
+                    return _dbSet
+                        .Include(recipe => recipe.Category)
+                        .Include(recipe => recipe.User)
+                        .ToList();
+            }
         }
 
         public async Task<Recipe> GetById(int id)
