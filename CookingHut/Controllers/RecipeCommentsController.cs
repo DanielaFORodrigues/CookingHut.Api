@@ -1,6 +1,4 @@
-﻿using CookingHut.Domain.Entities;
-using CookingHut.Services.Mapping.Dtos;
-using CookingHut.Services.Services.Implementations;
+﻿using CookingHut.Services.Mapping.Dtos;
 using CookingHut.Services.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
@@ -10,7 +8,7 @@ namespace CookingHut.Controllers
 {
     [Route("CookingHut/[controller]")]
     [ApiController]
-    public class RecipeCommentsController
+    public class RecipeCommentsController : ControllerBase
 
     {
         private readonly IRecipeCommentsService _service;

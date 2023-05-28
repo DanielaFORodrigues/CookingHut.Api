@@ -16,6 +16,7 @@ namespace CookingHut.Services.Mapping.AutoMapper
             CreateMap<RecipeIngredient, RecipeIngredientDto>();
             CreateMap<RecipeComment, RecipeCommentDto>();
             CreateMap<User, UserDto>();
+            CreateMap<UserFavouriteRecipe, UserFavouriteRecipeDto>();
         }
     }
 }

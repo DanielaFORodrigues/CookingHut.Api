@@ -12,6 +12,7 @@ namespace CookingHut.Infra.Data.Context
         public DbSet<Rating> Ratings { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<RecipeComment> RecipeComments { get; set; }
+        public DbSet<UserFavouriteRecipe> UserFavouriteRecipes { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

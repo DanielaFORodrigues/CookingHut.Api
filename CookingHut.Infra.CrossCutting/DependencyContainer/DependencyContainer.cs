@@ -27,6 +27,7 @@ namespace CookingHut.Infra.CrossCutting.DependencyContainer
             services.AddScoped<IIngredientRepository, IngredientRepository>();
             services.AddScoped<IRatingRepository, RatingRepository>();
             services.AddScoped<IRecipeCommentsRepository, RecipeCommentsRepository>();
+            services.AddScoped<IUserFavouriteRecipesRepository, UserFavouriteRecipesRepository>();
             services.AddScoped<IRecipeIngredientRepository, RecipeIngredientRepository>();
             services.AddScoped<IRecipeRepository, RecipeRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
@@ -38,6 +39,7 @@ namespace CookingHut.Infra.CrossCutting.DependencyContainer
             services.AddScoped<IIngredientService, IngredientService>();
             services.AddScoped<IRatingService, RatingService>();
             services.AddScoped<IRecipeCommentsService, RecipeCommentsService>();
+            services.AddScoped<IUserFavouriteRecipesService, UserFavouriteRecipesService>();
             services.AddScoped<IRecipeIngredientService, RecipeIngredientService>();
             services.AddScoped<IRecipeService, RecipeService>();
             services.AddScoped<IUserService, UserService>();
