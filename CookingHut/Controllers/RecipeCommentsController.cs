@@ -35,6 +35,7 @@ namespace CookingHut.Controllers
         [HttpPost]
         public RecipeCommentDto Save(RecipeCommentDto recipeCommentsDto)
         {
+            recipeCommentsDto.DatePost = System.DateTime.UtcNow;
             return _service.Save(recipeCommentsDto).Result;
         }
 
