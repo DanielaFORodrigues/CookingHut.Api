@@ -23,9 +23,9 @@ namespace CookingHut.Services.Services.Implementations
             _repository = repository;
         }
 
-        public async Task<List<RecipeDto>> GetAll(string type, int id)
+        public async Task<List<RecipeDto>> GetAll(string type, int id, string searchText)
         {
-            List<Recipe> recipes = await _repository.GetAll(type, id);
+            List<Recipe> recipes = await _repository.GetAll(type, id, searchText);
             return _mapper.Map<List<RecipeDto>>(recipes);
         }
 

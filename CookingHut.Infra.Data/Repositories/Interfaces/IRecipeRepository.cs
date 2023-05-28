@@ -10,7 +10,7 @@ namespace CookingHut.Infra.Data.Repositories.Interfaces
     public interface IRecipeRepository
 
     {
-        Task<List<Recipe>> GetAll(string type, int id);
+        Task<List<Recipe>> GetAll(string type, int id, string searchText);
 
         Task<Recipe> GetById(int id);
 

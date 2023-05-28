@@ -18,9 +18,9 @@ namespace CookingHut.Controllers
         }
 
         [HttpGet]
-        public List<RecipeDto> GetAll(string type, int id)
+        public async Task<List<RecipeDto>> GetAllAsync(string type, int id, string searchText)
         {
-            return _service.GetAll(type, id).Result;
+            return await _service.GetAll(type, id, searchText);
         }
 
         [HttpGet("{id}")]
