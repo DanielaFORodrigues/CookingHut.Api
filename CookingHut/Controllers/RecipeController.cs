@@ -46,11 +46,9 @@ namespace CookingHut.Controllers
         }
 
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async Task DeleteAsync(int id)
         {
-            RecipeDto recipe = _service.GetById(id).Result;
-            if (recipe != null)
-                _service.Delete(recipe);
+            await _service.Delete(id);
         }
     }
 }

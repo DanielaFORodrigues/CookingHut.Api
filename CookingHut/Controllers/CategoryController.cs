@@ -2,6 +2,7 @@
 using CookingHut.Services.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace CookingHut.Controllers
 {
@@ -35,11 +36,9 @@ namespace CookingHut.Controllers
         }
 
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async Task DeleteAsync(int id)
         {
-            CategoryDto category = _service.GetById(id).Result;
-            if (category != null)
-                _service.Delete(category);
+            await _service.Delete(id);
         }
     }
 }

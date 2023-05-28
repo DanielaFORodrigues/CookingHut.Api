@@ -59,9 +59,9 @@ namespace CookingHut.Services.Services.Implementations
             return _mapper.Map<RecipeIngredientDto>(recipeIngredient);
         }
 
-        public async Task Delete(RecipeIngredientDto recipeIngredientDto)
+        public async Task Delete(int id)
         {
-            RecipeIngredient recipeIngredient = _mapper.Map<RecipeIngredient>(recipeIngredientDto);
+            RecipeIngredient recipeIngredient = await _repository.GetById(id);
 
             _repository.Delete(recipeIngredient);
 

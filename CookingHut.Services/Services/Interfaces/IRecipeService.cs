@@ -15,6 +15,6 @@ namespace CookingHut.Services.Services.Interfaces
 
         Task<RecipeDto> Save(RecipeDto recipeDto);
 
-        Task Delete(RecipeDto recipeDto);
+        Task Delete(int id);
     }
 }

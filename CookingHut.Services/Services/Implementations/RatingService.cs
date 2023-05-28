@@ -52,9 +52,9 @@ namespace CookingHut.Services.Services.Implementations
             return _mapper.Map<RatingDto>(rating);
         }
 
-        public async Task Delete(RatingDto ratingDto)
+        public async Task Delete(int id)
         {
-            Rating rating = _mapper.Map<Rating>(ratingDto);
+            Rating rating = await _repository.GetById(id);
 
             _repository.Delete(rating);
 

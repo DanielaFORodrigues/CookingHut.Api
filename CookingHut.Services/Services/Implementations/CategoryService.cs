@@ -52,9 +52,9 @@ namespace CookingHut.Services.Services.Implementations
             return _mapper.Map<CategoryDto>(category);
         }
 
-        public async Task Delete(CategoryDto categoryDto)
+        public async Task Delete(int id)
         {
-            Category category = _mapper.Map<Category>(categoryDto);
+            Category category = await _repository.GetById(id);
 
             _repository.Delete(category);
 
