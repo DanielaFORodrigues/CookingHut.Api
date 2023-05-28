@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using CookingHut.Domain.Entities;
+using CookingHut.Infra.Data.Migrations;
 using CookingHut.Services.Mapping.Dtos;
 
 namespace CookingHut.Services.Mapping.AutoMapper
@@ -13,6 +14,7 @@ namespace CookingHut.Services.Mapping.AutoMapper
             CreateMap<Rating, RatingDto>();
             CreateMap<Recipe, RecipeDto>();
             CreateMap<RecipeIngredient, RecipeIngredientDto>();
+            CreateMap<RecipeComment, RecipeCommentDto>();
             CreateMap<User, UserDto>();
         }
     }

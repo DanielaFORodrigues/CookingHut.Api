@@ -6,6 +6,7 @@ using CookingHut.Infra.Data.Repositories.Interfaces;
 using CookingHut.Services.Mapping.AutoMapper;
 using CookingHut.Services.Services.Implementations;
 using CookingHut.Services.Services.Interfaces;
+using CookingHut.Domain.Entities;
 
 namespace CookingHut.Infra.CrossCutting.DependencyContainer
 {
@@ -25,6 +26,7 @@ namespace CookingHut.Infra.CrossCutting.DependencyContainer
             services.AddScoped<ICategoryRepository, CategoryRepository>();
             services.AddScoped<IIngredientRepository, IngredientRepository>();
             services.AddScoped<IRatingRepository, RatingRepository>();
+            services.AddScoped<IRecipeCommentsRepository, RecipeCommentsRepository>();
             services.AddScoped<IRecipeIngredientRepository, RecipeIngredientRepository>();
             services.AddScoped<IRecipeRepository, RecipeRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
@@ -35,6 +37,7 @@ namespace CookingHut.Infra.CrossCutting.DependencyContainer
             services.AddScoped<ICategoryService, CategoryService>();
             services.AddScoped<IIngredientService, IngredientService>();
             services.AddScoped<IRatingService, RatingService>();
+            services.AddScoped<IRecipeCommentsService, RecipeCommentsService>();
             services.AddScoped<IRecipeIngredientService, RecipeIngredientService>();
             services.AddScoped<IRecipeService, RecipeService>();
             services.AddScoped<IUserService, UserService>();

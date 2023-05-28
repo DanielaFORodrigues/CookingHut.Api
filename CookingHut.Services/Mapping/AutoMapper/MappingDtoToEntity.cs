@@ -15,6 +15,7 @@ namespace CookingHut.Services.Mapping.AutoMapper
             CreateMap<RatingDto, Rating>();//.ForMember(dest => dest.UserId, opt => opt.Ignore());
             CreateMap<RecipeIngredientDto, RecipeIngredient>();//.ForMember(dest => dest.UserId, opt => opt.Ignore());
             CreateMap<UserDto, User>();//.ForMember(dest => dest.UserId, opt => opt.Ignore());
+            CreateMap<RecipeCommentDto, RecipeComment>();//.ForMember(dest => dest.UserId, opt => opt.Ignore());
         }
     }
 }
