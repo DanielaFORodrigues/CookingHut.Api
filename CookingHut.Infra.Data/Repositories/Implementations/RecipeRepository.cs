@@ -23,13 +23,19 @@ namespace CookingHut.Infra.Data.Repositories.Implementations
         {
             switch (type)
             {
-                //falta filtro por "favourites"
-
                 case "approval":
                     return _dbSet
                         .Include(recipe => recipe.Category)
                         .Include(recipe => recipe.User)
                         .Where(recipe => recipe.IsApproved == false)
+                        .ToList();
+
+                case "favourites":
+                    return _dbSet
+                        .Include(recipe => recipe.Category)
+                        .Include(recipe => recipe.User)
+                        .Include(recipe => recipe.UserFavouriteRecipes)
+                        .Where(recipe => recipe.UserFavouriteRecipes.Any(favourite => favourite.UserId == id))
                         .ToList();
 
                 case "owner":
