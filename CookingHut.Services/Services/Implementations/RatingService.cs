@@ -22,15 +22,15 @@ namespace CookingHut.Services.Services.Implementations
             _repository = repository;
         }
 
-        public async Task<List<RatingDto>> GetAll()
+        public async Task<List<RatingDto>> GetAll(int recipeId)
         {
-            List<Rating> ratings = await _repository.GetAll();
+            List<Rating> ratings = await _repository.GetAll(recipeId);
             return _mapper.Map<List<RatingDto>>(ratings);
         }
 
-        public async Task<RatingDto> GetById(int id)
+        public async Task<RatingDto> GetById(int recipeId, int userId)
         {
-            Rating rating = await _repository.GetById(id);
+            Rating rating = await _repository.GetById(recipeId, userId);
             return _mapper.Map<RatingDto>(rating);
         }
 
@@ -50,15 +50,6 @@ namespace CookingHut.Services.Services.Implementations
             await _context.SaveChangesAsync();
 
             return _mapper.Map<RatingDto>(rating);
-        }
-
-        public async Task Delete(int id)
-        {
-            Rating rating = await _repository.GetById(id);
-
-            _repository.Delete(rating);
-
-            await _context.SaveChangesAsync();
         }
     }
 }

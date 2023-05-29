@@ -17,28 +17,29 @@ namespace CookingHut.Controllers
             _service = ratingService;
         }
 
-        [HttpGet]
-        public List<RatingDto> GetAll()
+        [HttpGet("{recipeId}")]
+        public List<RatingDto> GetAll(int recipeId)
         {
-            return _service.GetAll().Result;
+            return _service.GetAll(recipeId).Result;
         }
 
-        [HttpGet("{id}")]
-        public RatingDto GetById(int id)
+        [HttpGet("{recipeId}/{userId}")]
+        public async Task<IActionResult> GetByIdAsync(int recipeId, int userId)
         {
-            return _service.GetById(id).Result;
+            var rating = await _service.GetById(recipeId, userId);
+
+            if (rating is null)
+            {
+                return NotFound();
+            }
+
+            return Ok(rating);
         }
 
         [HttpPost]
         public RatingDto Save(RatingDto ratingDto)
         {
             return _service.Save(ratingDto).Result;
-        }
-
-        [HttpDelete("{id}")]
-        public async Task DeleteAsync(int id)
-        {
-            await _service.Delete(id);
         }
     }
 }

@@ -9,9 +9,9 @@ namespace CookingHut.Infra.Data.Repositories.Interfaces
 {
     public interface IRatingRepository
     {
-        Task<List<Rating>> GetAll();
+        Task<List<Rating>> GetAll(int recipeId);
 
-        Task<Rating> GetById(int id);
+        Task<Rating> GetById(int recipeId, int userId);
 
         Rating Add(Rating rating);
 

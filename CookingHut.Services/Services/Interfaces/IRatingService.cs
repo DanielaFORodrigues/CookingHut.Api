@@ -10,12 +10,10 @@ namespace CookingHut.Services.Services.Interfaces
 {
     public interface IRatingService
     {
-        Task<List<RatingDto>> GetAll();
+        Task<List<RatingDto>> GetAll(int recipeId);
 
-        Task<RatingDto> GetById(int id);
+        Task<RatingDto> GetById(int recipeId, int userId);
 
         Task<RatingDto> Save(RatingDto ratingDto);
-
-        Task Delete(int id);
     }
 }

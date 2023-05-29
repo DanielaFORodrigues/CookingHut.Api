@@ -12,6 +12,6 @@ namespace CookingHut.Domain.Entities
         public int UserId { get; set; }
         public User User { get; set; }
 
-        public double RatingValue { get; set; }
+        public int RatingValue { get; set; }
     }
 }

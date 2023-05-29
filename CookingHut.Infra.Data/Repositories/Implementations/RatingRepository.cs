@@ -3,6 +3,7 @@ using CookingHut.Infra.Data.Context;
 using CookingHut.Infra.Data.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace CookingHut.Infra.Data.Repositories.Implementations
@@ -18,14 +19,21 @@ namespace CookingHut.Infra.Data.Repositories.Implementations
             _dbSet = _cookingHutDBContext.Set<Rating>();
         }
 
-        public async Task<List<Rating>> GetAll()
+        public async Task<List<Rating>> GetAll(int recipeId)
         {
-            return await _dbSet.ToListAsync();
+            return _dbSet
+                .Include(rating => rating.Recipe)
+                .Include(rating => rating.User)
+                .Where(rating => rating.RecipeId == recipeId)
+                .ToList();
         }
 
-        public async Task<Rating> GetById(int id)
+        public async Task<Rating> GetById(int recipeId, int userId)
         {
-            return await _dbSet.FindAsync(id);
+            return _dbSet
+                .Include(rating => rating.Recipe)
+                .Include(rating => rating.User)
+                .FirstOrDefault(rating => rating.RecipeId == recipeId && rating.UserId == userId);
         }
 
         public Rating Add(Rating rating)
