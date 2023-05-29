@@ -4,14 +4,16 @@ using CookingHut.Infra.Data.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CookingHut.Infra.Data.Migrations
 {
     [DbContext(typeof(CookingHutDBContext))]
-    partial class CookingHutDBContextModelSnapshot : ModelSnapshot
+    [Migration("20230529195747_rating value")]
+    partial class ratingvalue
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
