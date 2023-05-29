@@ -47,6 +47,7 @@ namespace CookingHut.Services.Services.Implementations
 
             userLogin.Id = user.Id;
             userLogin.Name = this.GetNomeParaMostrar(user);
+            userLogin.isAdministrator = user.IsAdministrator;
 
             return userLogin;
         }
