@@ -35,6 +35,17 @@ namespace CookingHut.Services.Services.Implementations
             return _mapper.Map<RecipeDto>(recipe);
         }
 
+        public async Task<RecipeDto> Approve(int id)
+        {
+            Recipe recipe = await _repository.GetById(id);
+            recipe.IsApproved = true;
+
+            _repository.Update(recipe);
+            await _context.SaveChangesAsync();
+
+            return _mapper.Map<RecipeDto>(recipe);
+        }
+
         public async Task<RecipeDto> Save(RecipeDto recipeDto)
         {
             Recipe recipe = _mapper.Map<Recipe>(recipeDto);

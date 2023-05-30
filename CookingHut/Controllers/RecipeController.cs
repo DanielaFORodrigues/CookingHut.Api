@@ -36,6 +36,14 @@ namespace CookingHut.Controllers
             return Ok(recipe);
         }
 
+        [HttpPut("{id}")]
+        public async Task<IActionResult> ApproveRecipe(int id)
+        {
+            await _service.Approve(id);
+
+            return Ok();
+        }
+
         [HttpPost]
         public async Task<IActionResult> Save(RecipeDto recipeDto)
         {
