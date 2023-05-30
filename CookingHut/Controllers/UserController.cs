@@ -78,7 +78,7 @@ namespace CookingHut.Controllers
             return Ok(user);
         }
 
-        [HttpPatch("{id}/{shouldBlock}")]
+        [HttpPut("{id}/{shouldBlock}")]
         public async Task<IActionResult> BlockUser(int id, bool shouldBlock)
         {
             await _service.Block(id, shouldBlock);
