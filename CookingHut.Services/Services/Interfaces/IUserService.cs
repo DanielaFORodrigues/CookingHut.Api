@@ -20,6 +20,8 @@ namespace CookingHut.Services.Services.Interfaces
 
         Task<UserDto> Update(UserDto userDto);
 
+        Task<UserDto> Block(int id, bool shouldBlock);
+
         Task Delete(int id);
     }
 }
