@@ -97,6 +97,17 @@ namespace CookingHut.Services.Services.Implementations
             return _mapper.Map<UserDto>(user);
         }
 
+        public async Task<UserDto> PromoteAdmin(int id, bool shouldBeAdmin)
+        {
+            User user = await _repository.GetById(id);
+            user.IsAdministrator = shouldBeAdmin;
+
+            _repository.Update(user);
+            await _context.SaveChangesAsync();
+
+            return _mapper.Map<UserDto>(user);
+        }
+
         public async Task Delete(int id)
         {
             User user = await _repository.GetById(id);

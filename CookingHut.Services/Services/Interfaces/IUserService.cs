@@ -22,6 +22,8 @@ namespace CookingHut.Services.Services.Interfaces
 
         Task<UserDto> Block(int id, bool shouldBlock);
 
+        Task<UserDto> PromoteAdmin(int id, bool shouldBeAdmin);
+
         Task Delete(int id);
     }
 }

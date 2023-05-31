@@ -86,6 +86,14 @@ namespace CookingHut.Controllers
             return Ok();
         }
 
+        [HttpPatch("{id}/{shouldBeAdmin}")]
+        public async Task<IActionResult> PromoteUserToAdmin(int id, bool shouldBeAdmin)
+        {
+            await _service.PromoteAdmin(id, shouldBeAdmin);
+
+            return Ok();
+        }
+
         [HttpPut]
         public async Task<UserDto> UpdateAsync(UserDto userDto)
         {
